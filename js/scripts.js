@@ -2,7 +2,7 @@ function Place (city, country, date, activities) {
   this.city = city;
   this.country = country;
   this.date = date;
-  this.activities = activities;
+  this.activities = activities [];
 }
 
 $(document).ready(function() {
@@ -16,7 +16,7 @@ $(document).ready(function() {
     var inputtedCountry = $("#new-country").val();
     var inputtedDate = $("#new-date").val();
 
-    var newPlace = new Place(inputtedCity, inputtedCountry, inputtedDate, []);
+    var newPlace = new Place(inputtedCity, inputtedCountry, inputtedDate);
 
     places.push(newPlace);
 
@@ -36,26 +36,21 @@ $(document).ready(function() {
     index = places.indexOf(newPlace);
     });
 
-    $("form#add-activity").submit(function(event) {
-      event.preventDefault();
-      var newActivity = $("#new-activity").val();
-      places[index].activities.push(" " + newActivity);
-      $("#new-activity").val("");
-      $(".activities").text(places[index].activities);
-      // console.log(places[0]);
-      // console.log(places[1]);
-      // console.log(places[0].activities);
-      // console.log(places[1].activities);
-    })
+    // $("form#add-activity").submit(function(event) {
+    //   event.preventDefault();
+    //   var newActivity = $("#new-activity").val();
+    //   places[index].activities.push(" " + newActivity);
+    //   $("#new-activity").val("");
+    //   $(".activities").text(places[index].activities);
+    // })
 
   });
 
-  // $("form#add-activity").submit(function(event) {
-  //   event.preventDefault();
-  //   var newActivity = $("#new-activity").val();
-  //   console.log(index);
-  //   places[index].activities.push(" " + newActivity);
-  //   $("#new-activity").val("");
-  //   $(".activities").text(places[index].activities);
-  // })
+  $("form#add-activity").submit(function(event) {
+    event.preventDefault();
+    var newActivity = $("#new-activity").val();
+    places[index].activities.push(" " + newActivity);
+    $("#new-activity").val("");
+    $(".activities").text(places[index].activities);
+  })
 });
