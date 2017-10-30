@@ -6,6 +6,9 @@ function Place (city, country, date, activities) {
 }
 
 $(document).ready(function() {
+  var places = [];
+  var index = 0;
+
   $("form#new-trip").submit(function(event) {
     event.preventDefault();
 
@@ -14,6 +17,8 @@ $(document).ready(function() {
     var inputtedDate = $("#new-date").val();
 
     var newPlace = new Place(inputtedCity, inputtedCountry, inputtedDate, []);
+
+    places.push(newPlace);
 
     $("ul#places").append("<li><span class='place'>" + newPlace.country + " " + newPlace.date + "</span></li>");
 
@@ -27,16 +32,30 @@ $(document).ready(function() {
     $("#show-places h2").text(newPlace.country);
     $(".city").text(newPlace.city);
     $(".date").text(newPlace.date);
+    $(".activities").text(newPlace.activities);
+    index = places.indexOf(newPlace);
     });
 
     $("form#add-activity").submit(function(event) {
       event.preventDefault();
       var newActivity = $("#new-activity").val();
-      console.log(newActivity);
-      this.activities.push(" " + newActivity);
-      console.log(newPlace.activities);
-      //$("#new-activity").val("");
-      $(".activities").text(newPlace.activities);
+      places[index].activities.push(" " + newActivity);
+      $("#new-activity").val("");
+      $(".activities").text(places[index].activities);
+      // console.log(places[0]);
+      // console.log(places[1]);
+      // console.log(places[0].activities);
+      // console.log(places[1].activities);
     })
+
   });
+
+  // $("form#add-activity").submit(function(event) {
+  //   event.preventDefault();
+  //   var newActivity = $("#new-activity").val();
+  //   console.log(index);
+  //   places[index].activities.push(" " + newActivity);
+  //   $("#new-activity").val("");
+  //   $(".activities").text(places[index].activities);
+  // })
 });
