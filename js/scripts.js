@@ -13,7 +13,7 @@ $(document).ready(function() {
     var inputtedCountry = $("#new-country").val();
     var inputtedDate = $("#new-date").val();
 
-    var newPlace = new Place(inputtedCity, inputtedCountry, inputtedDate);
+    var newPlace = new Place(inputtedCity, inputtedCountry, inputtedDate, []);
 
     $("ul#places").append("<li><span class='place'>" + newPlace.country + " " + newPlace.date + "</span></li>");
 
@@ -30,8 +30,13 @@ $(document).ready(function() {
     });
 
     $("form#add-activity").submit(function(event) {
+      event.preventDefault();
       var newActivity = $("#new-activity").val();
-      newPlace.activities.push(newActivity);
+      console.log(newActivity);
+      this.activities.push(" " + newActivity);
+      console.log(newPlace.activities);
+      //$("#new-activity").val("");
+      $(".activities").text(newPlace.activities);
     })
   });
 });
