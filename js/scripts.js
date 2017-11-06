@@ -2,7 +2,7 @@ function Place (city, country, date, activities) {
   this.city = city;
   this.country = country;
   this.date = date;
-  this.activities = activities [];
+  this.activities = [];
 }
 
 $(document).ready(function() {
